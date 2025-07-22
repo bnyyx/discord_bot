@@ -1,0 +1,16 @@
+Bot is online: fem.bot#8148
+Connected to RCON!
+Response from server: There are 1 of a max of 20 players online: nylonus
+Disconnected from RCON.
+Attempting to connect to RCON at 10.10.10.32:25575
+Successfully connected to RCON!
+Response from server: There are 1 of a max of 20 players online: nylonus
+Checking inventory for player: nylonus
+Fetching coordinates for player: nylonus
+Coordinates response for nylonus: nylonus has the following entity data: [45.299408075161544d, 56.0d, 265.84737371579223d]
+Attempting to connect to RCON at 10.10.10.32:25575
+Successfully connected to RCON!
+Response from server: There are 1 of a max of 20 players online: nylonus
+Checking inventory for player: nylonus
+Fetching coordinates for player: nylonus
+Coordinates response for nylonus: nylonus has the following entity data: [45.299408075161544d, 56.0d, 265.84737371579223d]
