@@ -4,7 +4,6 @@ const { Client, Collection, Events, GatewayIntentBits, ActivityType } = require(
 const { token } = require('./config.json');
 const cron = require('node-cron');
 
-// Create a new client instance
 const client = new Client({ 
     intents: [
         GatewayIntentBits.Guilds, 
@@ -12,7 +11,7 @@ const client = new Client({
         GatewayIntentBits.DirectMessages, 
         GatewayIntentBits.MessageContent
     ],
-    partials: ["CHANNEL"] // Ensures the bot can process DMs
+    partials: ["CHANNEL"] 
 });
 
 client.commands = new Collection();
@@ -26,7 +25,6 @@ for (const folder of commandFolders) {
 	for (const file of commandFiles) {
 		const filePath = path.join(commandsPath, file);
 		const command = require(filePath);
-		// Set a new item in the Collection with the key as the command name and the value as the exported module
 		if ('data' in command && 'execute' in command) {
 			client.commands.set(command.data.name, command);
 		} else {
@@ -38,10 +36,8 @@ for (const folder of commandFolders) {
 client.on(Events.InteractionCreate, async interaction => {
 	if (!interaction.isChatInputCommand()) return;
 
-	// Check if the interaction is in a DM or a Guild
 	const isDM = !interaction.guild;
 
-	// Get the command from the collection
 	const command = interaction.client.commands.get(interaction.commandName);
 
 	if (!command) {
@@ -50,7 +46,6 @@ client.on(Events.InteractionCreate, async interaction => {
 	}
 
 	try {
-		// Pass the isDM flag to handle the command differently if in DM
 		await command.execute(interaction, isDM);
 	} catch (error) {
 		console.error(error);
@@ -100,7 +95,7 @@ client.once(Events.ClientReady, async readyClient => {
 
             if (playerMatch) {
                 playerCount = parseInt(playerMatch[1], 10) || 0;
-                const maxPlayers = parseInt(playerMatch[2], 10) || 20; // Ensure max players are correct
+                const maxPlayers = parseInt(playerMatch[2], 10) || 20; 
 
                 if (playerMatch[3]) {
                     playerNames = playerMatch[3].split(',').map(player => player.trim());
@@ -109,18 +104,16 @@ client.once(Events.ClientReady, async readyClient => {
                 if (playerNames.length > 0) {
                     playerList = playerNames.join(', ');
 
-                    // Ensure it fits Discord’s 128-character limit
                     if (playerList.length > 128) {
                         playerList = playerList.substring(0, 125) + '...';
                     }
                 }
             }
 
-            // ✅ Set the bot's visible status
             client.user.setActivity({
                 name: `Players Online: ${playerCount}`,
                 type: ActivityType.Playing,
-                state: playerList, // Shows player list when profile is clicked
+                state: playerList,
             });
 
 
@@ -137,7 +130,6 @@ client.once(Events.ClientReady, async readyClient => {
         }
     }
 
-    // Update player status every 30 seconds
     updatePlayerStatus();
     setInterval(updatePlayerStatus, 30000);
 });
@@ -147,7 +139,6 @@ client.once(Events.ClientReady, async readyClient => {
 
 
 
-// Log in to Discord with your client's token
 client.login(token);
 
 // * * * * * *
