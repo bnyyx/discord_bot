@@ -12,8 +12,9 @@ https://discord.com/oauth2/authorize?client_id=1349726278722392126&permissions=8
 
 # notes
 make sure to create a config.json file and edit the following
+request the info at https://discord.com/developers/applications
 ```
 	"token": "token",
-	"clientId": "1349726278722392126",
+	"clientId": "clientid",
 	"guildId": "serverid" 
 ```
