@@ -8,6 +8,29 @@ make sure nodejs is installed
 ```node index.js```
 
 # notes
+this bot isnt really made to be versitale, might update that in the future
+
+create the following files yourself or remove the quotes.js and locations.js files in the commands folder.
+quotelist.js
+```
+const quotes = [
+	'list',
+	'of',
+	'quotes',
+];
+  
+  module.exports = quotes;
+```
+locations.js
+```
+const locations = [
+  { name: "basename", dimension: 'Overworld', coords: { x: 197, y: 107, z: 122 }, threshold: { x: 91, y: 91, z: 91 } },
+  { name: "Main End Island", dimension: 'End', coords: { x: 15, y: 49, z: 0 }, threshold: { x: 144, y: 144, z: 144 } },
+];
+
+module.exports = locations;
+```
+
 make sure to create a config.json file and edit the following
 request the info at https://discord.com/developers/applications
 ```
