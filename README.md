@@ -8,6 +8,9 @@ make sure nodejs is installed
 npm install
 ```
 ```
+node deploy-commands.js 
+```
+```
 node index.js
 ```
 
