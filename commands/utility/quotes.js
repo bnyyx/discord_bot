@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
+const quotes = require('../../quotelist'); 
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -9,26 +10,26 @@ module.exports = {
 				.setDescription('filter quotes by word :)')
 				.setRequired(false)
 		),
-
+	
 	async execute(interaction) {
-		const quotes = [
-			'"Ik snap dat je verdrietig bent. Als ik een vrouw was zou ik dat ook zijn." -Sylvano',
-			'"Als ik een vrouw zou zijn, zou ik een trans man worden" -Sylvano',
-			'"Ik zou je nooit missen Tonny" -Sylvano',
-			'"oke brb even zuigen" -Layna',
-			'"Worst kaas moment" -Layna',
-			'"Ik heb liever de remeowster" -Layna',
-			'"De ijsthee ontdooid" -Daan',
-			'"Nyahallo" -Alex',
-			'"Fuck bitches, speel Tetris" -Wesley',
-			'"Het is niet chad muziek het is Can you feel my heart van bring me the horizon" -Wesley',
-			'"Classic Alex" -Alex',
-			'"Drop de coördinaten van je gat" -Tonny',
-			'"I\x27m spaghetti hoym shit" -Tonny',
-			'"yoooo~" -Layna',
-			'"Waarom ben je zwart?" -Egoney',
-			'"breng je achterwerk" -Layna'
-		];
+	// 	const quotes = [
+	// 		'"Ik snap dat je verdrietig bent. Als ik een vrouw was zou ik dat ook zijn." -Sylvano',
+	// 		'"Als ik een vrouw zou zijn, zou ik een trans man worden" -Sylvano',
+	// 		'"Ik zou je nooit missen Tonny" -Sylvano',
+	// 		'"oke brb even zuigen" -Layna',
+	// 		'"Worst kaas moment" -Layna',
+	// 		'"Ik heb liever de remeowster" -Layna',
+	// 		'"De ijsthee ontdooid" -Daan',
+	// 		'"Nyahallo" -Alex',
+	// 		'"Fuck bitches, speel Tetris" -Wesley',
+	// 		'"Het is niet chad muziek het is Can you feel my heart van bring me the horizon" -Wesley',
+	// 		'"Classic Alex" -Alex',
+	// 		'"Drop de coördinaten van je gat" -Tonny',
+	// 		'"I\x27m spaghetti hoym shit" -Tonny',
+	// 		'"yoooo~" -Layna',
+	// 		'"Waarom ben je zwart?" -Egoney',
+	// 		'"breng je achterwerk" -Layna'
+	// 	];
 
 		// Get the optional filter argument
 		const filter = interaction.options.getString('filter');

@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-const locations = require('../../locations'); // Import locations
+const locations = require('../../locations'); 
 
 module.exports = {
   data: new SlashCommandBuilder()
