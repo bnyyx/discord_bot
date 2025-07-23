@@ -7,6 +7,9 @@ make sure nodejs is installed
 ```npm install```
 ```node index.js```
 
+# invite
+https://discord.com/oauth2/authorize?client_id=1349726278722392126&permissions=8&integration_type=0&scope=bot
+
 # notes
 this bot isnt really made to be used on other servers, might update that in the future
 
