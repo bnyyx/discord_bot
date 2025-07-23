@@ -8,7 +8,7 @@ make sure nodejs is installed
 ```node index.js```
 
 # notes
-this bot isnt really made to be versitale, might update that in the future
+this bot isnt really made to be used on other servers, might update that in the future
 
 create the following files yourself or remove the quotes.js and locations.js files in the commands folder.
 quotelist.js
