@@ -3,7 +3,7 @@ const { SlashCommandBuilder } = require('discord.js');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('affirmation')
-		.setDescription('wuv urself (je favoriete nederlandse motiverende quotes)'),
+		.setDescription('Hou van jezelf!'),
 
 
 	async execute(interaction) {

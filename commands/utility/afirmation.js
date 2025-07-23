@@ -3,7 +3,7 @@ const { SlashCommandBuilder } = require('discord.js');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('afirmation')
-		.setDescription('fuc urself (je favoriete nederlandse haat quotes)'),
+		.setDescription('Haat jezelf!'),
 
 
 	async execute(interaction) {

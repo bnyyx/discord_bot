@@ -4,7 +4,7 @@ const Rcon = require('rcon-client').Rcon;
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('players')
-    .setDescription('Show online fwiends! ^^'),
+    .setDescription('Show online players!'),
 
   async execute(interaction) {
     const host = '10.10.10.32';
@@ -31,7 +31,7 @@ module.exports = {
         const playerNames = playerMatch[1].split(',').map(player => player.trim());
 
         if (playerNames.length === 0 || playerNames[0] === '') {
-          await interaction.reply('no wun is onwine.. so lonely :C');
+          await interaction.reply('Nobody is online!');
           return;
         }
 
@@ -39,17 +39,17 @@ module.exports = {
           .setColor('#0099ff')
           .setTitle('**Now online!**')
           .setDescription(playerNames.map(player => `${player}`).join('\n'))
-          .setFooter({ text: `Pweoples online! : ${playerNames.length}` })
+          .setFooter({ text: `Online Players: ${playerNames.length}` })
 
         await interaction.reply({ embeds: [embed] });
         console.log('Interaction replied with player list in embed.');
       } else {
-        await interaction.reply('awwh i cannot connect :< ');
+        await interaction.reply('Cannot connect to the server! ');
       }
 
     } catch (err) {
       console.error('Error during RCON connection or command execution:', err);
-      await interaction.reply('awwh i cannot connect :< | ' + err.message);
+      await interaction.reply('Cannot connect to the server! | ' + err.message);
     } finally {
       rcon.end();
       console.log('Disconnected from RCON.');

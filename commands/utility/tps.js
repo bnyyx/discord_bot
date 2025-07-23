@@ -5,7 +5,7 @@ const net = require('net');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('tps')
-    .setDescription('Show tps :3'),
+    .setDescription('Show server TPS'),
 
   async execute(interaction) {
     await interaction.deferReply({ flags: MessageFlags.Ephemeral });

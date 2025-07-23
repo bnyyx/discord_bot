@@ -72,13 +72,13 @@ module.exports = {
 
       const playerMatch = response.match(/players online: (.*)/);
       if (!playerMatch || !playerMatch[1] || playerMatch[1].trim() === '') {
-        await interaction.editReply({ content: 'No players are currently online :<', ephemeral: true }); 
+        await interaction.editReply({ content: 'No players are currently online :(', ephemeral: true }); 
         return;
       }
 
       const playerNames = playerMatch[1].split(',').map(player => player.trim()).filter(Boolean);
       if (playerNames.length === 0) {
-        await interaction.editReply({ content: 'No players are currently online :<', ephemeral: true }); 
+        await interaction.editReply({ content: 'No players are currently online :(', ephemeral: true }); 
         return;
       }
 
@@ -167,7 +167,7 @@ module.exports = {
 
     } catch (err) {
       console.error(`[${new Date().toLocaleTimeString()}] Error during RCON connection or command execution:`, err);
-      let errorMessage = 'Awwh, I cannot connect :<';
+      let errorMessage = 'Cannot connect to the server! Reason: ';
 
       if (err.message.includes('ETIMEDOUT')) {
         errorMessage += ' (Connection timed out - server is likely offline or RCON port is blocked/incorrect)';

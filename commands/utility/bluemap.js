@@ -3,14 +3,14 @@ const { ActionRowBuilder, ButtonBuilder, ButtonStyle, SlashCommandBuilder } = re
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('map')
-		.setDescription('Get the link to the bluemap teehee~~'),
+		.setDescription('Get a link for Bluemap'),
 
 	async execute(interaction) {
 		const target = interaction.options.getUser('target');
 		const reason = interaction.options.getString('reason') ?? 'No reason provided';
 
 		const open = new ButtonBuilder()
-		.setLabel('c-click on me.. :3')
+		.setLabel('Click here!')
 		.setURL('http://mc.tonnus.nl:8100/')
 		.setStyle(ButtonStyle.Link);
 
@@ -18,7 +18,7 @@ module.exports = {
 		.addComponents(open);
 
 		await interaction.reply({
-			content: `c-click on the button below pwease..`,
+			content: `Click on the button below!`,
 			components: [row],
 		});
 
