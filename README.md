@@ -18,8 +18,9 @@ node index.js
 this bot isnt really made to be used on other servers, might update that in the future
 
 create the following files yourself or remove the quotes.js and locations.js files in the commands folder.
-there's probably more that won't work directly, just read the logs tbh, goodluck
-quotelist.js
+<br>there's probably more that won't work directly, just read the logs tbh, goodluck 
+<br>
+quotelist.js:
 ```
 const quotes = [
 	'list',
@@ -29,7 +30,7 @@ const quotes = [
   
   module.exports = quotes;
 ```
-locations.js
+locations.js:
 ```
 const locations = [
   { name: "basename", dimension: 'Overworld', coords: { x: 197, y: 107, z: 122 }, threshold: { x: 91, y: 91, z: 91 } },
