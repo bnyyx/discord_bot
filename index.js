@@ -20,41 +20,41 @@ const foldersPath = path.join(__dirname, 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
 
 for (const folder of commandFolders) {
-	const commandsPath = path.join(foldersPath, folder);
-	const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
-	for (const file of commandFiles) {
-		const filePath = path.join(commandsPath, file);
-		const command = require(filePath);
-		if ('data' in command && 'execute' in command) {
-			client.commands.set(command.data.name, command);
-		} else {
-			console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
-		}
-	}
+    const commandsPath = path.join(foldersPath, folder);
+    const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+    for (const file of commandFiles) {
+        const filePath = path.join(commandsPath, file);
+        const command = require(filePath);
+        if ('data' in command && 'execute' in command) {
+            client.commands.set(command.data.name, command);
+        } else {
+            console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
+        }
+    }
 }
 
 client.on(Events.InteractionCreate, async interaction => {
-	if (!interaction.isChatInputCommand()) return;
+    if (!interaction.isChatInputCommand()) return;
 
-	const isDM = !interaction.guild;
+    const isDM = !interaction.guild;
 
-	const command = interaction.client.commands.get(interaction.commandName);
+    const command = interaction.client.commands.get(interaction.commandName);
 
-	if (!command) {
-		console.error(`No command matching ${interaction.commandName} was found.`);
-		return;
-	}
+    if (!command) {
+        console.error(`No command matching ${interaction.commandName} was found.`);
+        return;
+    }
 
-	try {
-		await command.execute(interaction, isDM);
-	} catch (error) {
-		console.error(error);
-		if (interaction.replied || interaction.deferred) {
-			await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
-		} else {
-			await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
-		}
-	}
+    try {
+        await command.execute(interaction, isDM);
+    } catch (error) {
+        console.error(error);
+        if (interaction.replied || interaction.deferred) {
+            await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
+        } else {
+            await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+        }
+    }
 });
 
 
@@ -80,9 +80,11 @@ client.once(Events.ClientReady, async readyClient => {
    
     async function updatePlayerStatus() {
         const rcon = new Rcon({ host, port, password });
+        let connectedSuccessfully = false; 
 
         try {
             await rcon.connect();
+            connectedSuccessfully = true; 
             console.log('Connected to RCON!');
 
             const response = await rcon.send('list');
@@ -117,7 +119,6 @@ client.once(Events.ClientReady, async readyClient => {
             });
 
 
-
         } catch (err) {
             console.error('Error fetching player count:', err);
             client.user.setActivity({
@@ -125,18 +126,18 @@ client.once(Events.ClientReady, async readyClient => {
                 type: ActivityType.Playing
             });
         } finally {
-            rcon.end();
-            console.log('Disconnected from RCON.');
+            if (connectedSuccessfully) {
+                rcon.end();
+                console.log('Disconnected from RCON.');
+            } else {
+                console.log('RCON connection was not established, skipping rcon.end().');
+            }
         }
     }
 
     updatePlayerStatus();
     setInterval(updatePlayerStatus, 30000);
 });
-
-
-
-
 
 
 client.login(token);
